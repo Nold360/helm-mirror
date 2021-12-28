@@ -7,7 +7,7 @@ version=$1
 PROJECT_NAME="helm-mirror"
 PROJECT_GH="openSUSE/$PROJECT_NAME"
 
-: ${HELM_PLUGIN_PATH:="$(helm home --debug=false)/plugins/helm-mirror"}
+: ${HELM_PLUGIN_PATH:="$HELM_PLUGINS/helm-mirror"}
 
 # Convert the HELM_PLUGIN_PATH to unix if cygpath is
 # available. This is the case when using MSYS2 or Cygwin
@@ -105,7 +105,7 @@ installFile() {
   echo "Preparing to install into ${HELM_PLUGIN_PATH}"
   mkdir -p "$HELM_PLUGIN_PATH/bin"
   pushd "$HELM_TMP"
-  cp -r $HELM_TMP/* "$HELM_PLUGIN_PATH"
+  cp -vr $HELM_TMP/bin "$HELM_PLUGIN_PATH"
   popd
 }
 
